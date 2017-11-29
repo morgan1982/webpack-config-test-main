@@ -9,7 +9,7 @@ const extractPlugin = new ExtractTextPlugin({
 })
 
 module.exports = {
-    entry: './src/js/app.js',
+    entry: './src/app.js',
     output: {
         // to create an absolute path
         path: path.resolve(__dirname, "dist"),
@@ -24,7 +24,7 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.(js|jsx)?/,
+                test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
                 use: 'babel-loader'
             },
@@ -84,20 +84,21 @@ module.exports = {
             // compress: true
         }),
         extractPlugin,
+
         new HtmlWebpackPlugin({
-            // filename: 'index.html',
+            filename: 'index.html',
             title: "Haskell",
             minify: {
                 collapseWhitespace: true
             },
             hash: true,
-            template: 'src/index.html'
+            template: 'src/index.html',
+            inject: 'body'
         }),
-        // new HtmlWebpackPlugin({
-        //     filename: 'users.html',
-        //     template: 'src/users.html',
-        //     chunks: []
-        // }),
+
         new CleanWebpackPlugin(['dist'])
-    ]
+    ],
+    resolve: {
+        extensions: ['.js', '.jsx'],
+    }
 };

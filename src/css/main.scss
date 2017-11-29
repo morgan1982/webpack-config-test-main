@@ -1,6 +1,6 @@
 @import 'colors';
 
-#randomInt {
+#title {
     background-color: $main;
     border: 1px solid black;
     color: white;
@@ -15,5 +15,12 @@
 }
 .title {
     color: violet;
+    font-size: 3em;
     // font-size: 5em;
+}
+#dump {
+    display: block;
+    height: 3000px;
+    width: 300px;
+    border: 1px solid black;
 }
