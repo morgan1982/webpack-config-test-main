@@ -9,7 +9,11 @@ const extractPlugin = new ExtractTextPlugin({
 })
 
 module.exports = {
-    entry: './src/app.js',
+    entry: [
+        'webpack-dev-server/client?/http://localhost:3000',
+        'webpack/hot/only-dev-server',
+        './src/app.js',
+        ],
     output: {
         // to create an absolute path
         path: path.resolve(__dirname, "dist"),
@@ -19,14 +23,19 @@ module.exports = {
     devServer: {
         contentBase: path.join(__dirname, "dist"),
         compress: true, //gzip the files
-        port: 3000
+        port: 3000,
+        hot: true,
+        inline: true,
+        progress: true
     },
     module: {
         rules: [
             {
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
-                use: 'babel-loader'
+                use: [
+                    'babel-loader',
+                ],
             },
             {
                 test: /\.scss$/,
@@ -99,6 +108,6 @@ module.exports = {
         new CleanWebpackPlugin(['dist'])
     ],
     resolve: {
-        extensions: ['.js', '.jsx'],
+        extensions: ['*', '.js', '.jsx'],
     }
 };

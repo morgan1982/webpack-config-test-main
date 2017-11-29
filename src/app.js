@@ -9,7 +9,10 @@ import App from "./js/App.jsx";
 
 
 
+
 ReactDOM.render(
     <App name="Webpack 3 react"/>, 
     document.getElementById('root')
     )
+
+module.hot.accept();
