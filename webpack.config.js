@@ -6,13 +6,15 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const webpack = require('webpack');
 
 const extractPlugin = new ExtractTextPlugin({
-    filename: 'main.css'
+    filename: 'main.css',
+    allChunks: true,
+    disable: process.env.NODE_ENV != 'production'
 })
 
 module.exports = {
+    devtool: 'eval',
     entry: [
         'react-hot-loader/patch',
-        'webpack-dev-server/client?/http://localhost:3000',
         'webpack/hot/only-dev-server',
         './src/app.js',
         ],
@@ -23,13 +25,18 @@ module.exports = {
         // publicPath: '/dist'
     },
     devServer: {
-        contentBase: path.join(__dirname, "dist"),
+        // contentBase: path.join(__dirname, "dist"),
+        contentBase: './', //seems to fixed the wds error
         compress: true, //gzip the files
         port: 3000,
         hot: true,
-        historyApiFallback: true,
+        // historyApiFallback: true,
+        // historyApiFallback: {
+        //   index: '/dist/'
+        // },
         inline: true,
-        progress: true
+        progress: true,
+
     },
     module: {
         rules: [
@@ -37,15 +44,16 @@ module.exports = {
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
                 use: [
-                    'babel-loader',
+                    'react-hot-loader/webpack', 'babel-loader'
                 ],
             },
             {
                 test: /\.scss$/,
-                //to extract to the main .css
                 use: extractPlugin.extract({
+                    fallback: 'style-loader',
                     use: ['css-loader', 'sass-loader']
                 })
+
             },
             {
                 test: /\.css$/,
@@ -103,7 +111,7 @@ module.exports = {
             minify: {
                 collapseWhitespace: true
             },
-            hash: true,
+            // hash: true,
             template: 'src/index.html',
             inject: 'body'
         }),
