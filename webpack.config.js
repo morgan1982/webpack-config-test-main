@@ -26,15 +26,12 @@ module.exports = {
         // publicPath: '/dist'
     },
     devServer: {
-        // contentBase: path.join(__dirname, "dist"),
+
         contentBase: './', //seems to fixed the wds error
         compress: true, //gzip the files
         port: 3000,
         hot: true,
         historyApiFallback: true,
-        // historyApiFallback: {
-        //   index: '/dist/'
-        // },
         inline: true,
         // progress: true,
 
@@ -131,7 +128,7 @@ module.exports = {
             minify: {
                 collapseWhitespace: true
             },
-            // hash: true,
+            hash: true,
             template: 'src/index.html',
             inject: 'body'
         }),

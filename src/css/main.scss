@@ -14,16 +14,16 @@
     padding: 5px;
 }
 
-#dump {
-    display: block;
-    height: 3000px;
-    width: 300px;
-    border: 1px solid black;
+ul {
+    list-style-type: none;
 }
 li {
     // border: 4px solid black;
     background-color: violet;
+    padding: 3px 3px;
+    margin-bottom: 3px;
     color: black;
+
 }
 .chart {
     color: violet;

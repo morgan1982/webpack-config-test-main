@@ -17,7 +17,7 @@ export default class App extends Component {
             <div>
             <div id="title">Hello { this.props.name }</div>
                 <img src={ haskell_logo } alt="haskell"/>
-            <Chart />
+            <Chart name="React prop"/>
             <ul>
                 <li>d3</li>
                 <li>e-charts</li>
