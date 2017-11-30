@@ -16,7 +16,7 @@ module.exports = {
     entry: [
         'react-hot-loader/patch',
         'webpack/hot/only-dev-server',
-        // 'font-awesome/scss/font-awesome.scss',
+        'font-awesome/scss/font-awesome.scss',
         './src/app.js',
         ],
     output: {
@@ -78,6 +78,25 @@ module.exports = {
                             outputPath: 'img/',
                             // publicPath: 'img/'
                         }
+                    }
+                ]
+            },
+            {
+                test: /\.woff2?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+                use: 'url-loader?limit=10000',
+            },
+            {
+                test: /\.(ttf|eot|svg)(\?[\s\S]+)?$/,
+                use: 'file-loader',
+            },
+            {
+                test: /font-awesome\.config\.js/,
+                use: [
+                    {
+                        loader: 'style-loader'
+                    },
+                    {
+                        loader: 'font-awesome-loader'
                     }
                 ]
             },
