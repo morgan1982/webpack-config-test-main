@@ -16,6 +16,7 @@ module.exports = {
     entry: [
         'react-hot-loader/patch',
         'webpack/hot/only-dev-server',
+        // 'font-awesome/scss/font-awesome.scss',
         './src/app.js',
         ],
     output: {
