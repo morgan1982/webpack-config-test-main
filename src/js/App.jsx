@@ -21,6 +21,7 @@ export default class App extends Component {
                 <li>e-charts</li>
                 <li>bootstrap</li>
                 <li>sass</li>
+                <li>develop branch</li>
             </ul>
             {/*<div id="dump"></div>*/}
 
