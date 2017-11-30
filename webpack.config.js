@@ -11,6 +11,7 @@ const extractPlugin = new ExtractTextPlugin({
 
 module.exports = {
     entry: [
+        'react-hot-loader/patch',
         'webpack-dev-server/client?/http://localhost:3000',
         'webpack/hot/only-dev-server',
         './src/app.js',
@@ -26,6 +27,7 @@ module.exports = {
         compress: true, //gzip the files
         port: 3000,
         hot: true,
+        historyApiFallback: true,
         inline: true,
         progress: true
     },

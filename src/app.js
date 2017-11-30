@@ -3,16 +3,28 @@ import './users.html';
 
 
 import React, {Component} from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
+import { AppContainer } from "react-hot-loader";
 
 import App from "./js/App.jsx";
 
 
 
 
-ReactDOM.render(
-    <App name="Webpack 3 react"/>, 
-    document.getElementById('root')
+render(
+    <AppContainer>
+        <App />
+    </AppContainer>, document.getElementById('root')
     )
 
-module.hot.accept();
+if(module.hot) {
+    module.hot.accept('./js/App.jsx', () => {
+        render(
+            <AppContainer>
+                <App />
+            </AppContainer>, document.getElementById('root')
+            )
+    })
+}
+
+
