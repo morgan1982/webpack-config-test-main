@@ -25,9 +25,9 @@ export default class App extends Component {
                 <li>sass</li>
                 <li>develop branch</li>
                 <li>test</li>
+                <li>konos</li>
                 <li className="fa fa-beer fa-2x">kolos</li>
             </ul>
-            {/*<div id="dump"></div>*/}
 
             </div>
 
