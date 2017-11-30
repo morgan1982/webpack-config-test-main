@@ -23,8 +23,7 @@ export default class App extends Component {
                 <li>sass</li>
                 <li>develop branch</li>
                 <li>test</li>
-                <li>test 2</li>
-                <li>test 3</li>
+                <li>kolos</li>
             </ul>
             {/*<div id="dump"></div>*/}
 

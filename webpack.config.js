@@ -30,12 +30,12 @@ module.exports = {
         compress: true, //gzip the files
         port: 3000,
         hot: true,
-        // historyApiFallback: true,
+        historyApiFallback: true,
         // historyApiFallback: {
         //   index: '/dist/'
         // },
         inline: true,
-        progress: true,
+        // progress: true,
 
     },
     module: {
