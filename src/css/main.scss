@@ -7,6 +7,14 @@
     color: yellow;
     padding: 5px;
 }
+.card {
+    color: darkgrey;
+    border: 2px solid orange;
+    background-color: #C0C0C0FF
+}
+.card-title {
+    color: black;
+}
 
 
 
@@ -32,4 +40,7 @@ li {
 .chart {
     color: violet;
     font-size: 2em;
+}
+.title-container {
+    border: 1px solid violet;
 }

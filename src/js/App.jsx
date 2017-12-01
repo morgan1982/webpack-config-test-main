@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import haskell_logo from "../img/haskell_logo.png";
 
 import Chart from './Components/Charts.js';
+import Drop from './Components/Drop'
 // import Plx from 'react-plx';
 
 
@@ -26,10 +27,9 @@ export default class App extends Component {
                 <li>develop branch</li>
                 <li>test</li>
                 <li className="fa fa-beer fa-2x">kolos</li>
-                <button type="button" className="btn btn-danger">press</button>
-
             </ul>
-            {/*<div id="dump"></div>*/}
+            <button type="button" className="btn btn-danger">press</button>
+            <Drop />
 
             </div>
 
