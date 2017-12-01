@@ -4,6 +4,8 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const webpack = require('webpack');
+const autoprefixer = require('autoprefixer');
+const precss = require('precss');
 
 const extractPlugin = new ExtractTextPlugin({
     filename: 'main.css',
@@ -16,6 +18,7 @@ module.exports = {
     entry: [
         'react-hot-loader/patch',
         'webpack/hot/only-dev-server',
+        'tether',
         'font-awesome/scss/font-awesome.scss',
         './src/app.js',
         ],
@@ -49,7 +52,26 @@ module.exports = {
                 test: /\.scss$/,
                 use: extractPlugin.extract({
                     fallback: 'style-loader',
-                    use: ['css-loader', 'sass-loader']
+                    use: [
+                        {
+                            loader: 'css-loader'
+                        },
+                        {
+                            loader: 'postcss-loader',
+                            options: {
+                                plugins() {
+
+                                    return [
+                                        precss,
+                                        autoprefixer
+                                    ];
+                                }
+                            }
+                        },
+                        {
+                            loader: 'sass-loader'
+                        }
+                    ]
                 })
 
             },
@@ -65,7 +87,7 @@ module.exports = {
                 use: ['html-loader']
             },
             {
-                test: /\.(jpg|png)$/,
+                test: /\.(jpe?g|png|gif)$/,
                 use: [
                     {
                         loader: 'file-loader',
@@ -73,7 +95,6 @@ module.exports = {
                         {
                             name: '[name].[ext]',
                             outputPath: 'img/',
-                            // publicPath: 'img/'
                         }
                     }
                 ]
@@ -112,6 +133,10 @@ module.exports = {
                     }
                 ],
                 exclude: path.resolve(__dirname, 'src/index.html')
+            },
+            {
+                test: /bootstrap\/dist\/js\/umd\//,
+                use: 'imports-loader?jQuery=jquery'
             }
         ]
     },
@@ -131,6 +156,27 @@ module.exports = {
             hash: true,
             template: 'src/index.html',
             inject: 'body'
+        }),
+        new webpack.ProvidePlugin({
+          $: 'jquery',
+          jQuery: 'jquery',
+          'window.jQuery': 'jquery',
+          tether: 'tether',
+          Tether: 'tether',
+          'window.Tether': 'tether',
+          Popper: ['popper.js', 'default'],
+          'window.Tether': 'tether',
+          Alert: 'exports-loader?Alert!bootstrap/js/dist/alert',
+          Button: 'exports-loader?Button!bootstrap/js/dist/button',
+          Carousel: 'exports-loader?Carousel!bootstrap/js/dist/carousel',
+          Collapse: 'exports-loader?Collapse!bootstrap/js/dist/collapse',
+          Dropdown: 'exports-loader?Dropdown!bootstrap/js/dist/dropdown',
+          Modal: 'exports-loader?Modal!bootstrap/js/dist/modal',
+          Popover: 'exports-loader?Popover!bootstrap/js/dist/popover',
+          Scrollspy: 'exports-loader?Scrollspy!bootstrap/js/dist/scrollspy',
+          Tab: 'exports-loader?Tab!bootstrap/js/dist/tab',
+          Tooltip: "exports-loader?Tooltip!bootstrap/js/dist/tooltip",
+          Util: 'exports-loader?Util!bootstrap/js/dist/util'
         }),
 
         new CleanWebpackPlugin(['dist']),
