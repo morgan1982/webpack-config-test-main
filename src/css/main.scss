@@ -1,3 +1,4 @@
+@import "~bootstrap/scss/bootstrap.scss";
 @import 'colors';
 
 #title {
@@ -6,6 +7,9 @@
     color: yellow;
     padding: 5px;
 }
+
+
+
 
 #randomRange {
     background-color: $secondary;
@@ -27,4 +31,5 @@ li {
 }
 .chart {
     color: violet;
+    font-size: 2em;
 }

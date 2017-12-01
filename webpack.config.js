@@ -1,10 +1,11 @@
+const autoprefixer = require('autoprefixer');
+const webpack = require('webpack');
 const path = require('path');
+const ProvidePlugin = require('webpack/lib/ProvidePlugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const webpack = require('webpack');
-const autoprefixer = require('autoprefixer');
 const precss = require('precss');
 
 const extractPlugin = new ExtractTextPlugin({
@@ -50,7 +51,7 @@ module.exports = {
                 ],
             },
             {
-                test: /\.scss$/,
+                test: /\.(scss)$/,
                 use: extractPlugin.extract({
                     fallback: 'style-loader',
                     use: [
@@ -87,22 +88,29 @@ module.exports = {
                 test: /\.html$/,
                 use: ['html-loader']
             },
+            // {
+            //     test: /\.(jpe?g|png|gif)$/,
+            //     use: [
+            //         {
+            //             loader: 'file-loader',
+            //             options: 
+            //             {
+            //                 name: '[name].[ext]',
+            //                 outputPath: 'img/',
+            //             }
+            //         }
+            //     ]
+            // },
             {
-                test: /\.(jpe?g|png|gif)$/,
+                test: /\.(jpe?g|png|gif|svg)$/i,
                 use: [
-                    {
-                        loader: 'file-loader',
-                        options: 
-                        {
-                            name: '[name].[ext]',
-                            outputPath: 'img/',
-                        }
-                    }
+                  'file-loader?name=images/[name].[ext]',
+                  'image-webpack-loader?bypassOnDebug'
                 ]
             },
             {
-                test: /\.woff2?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-                use: 'url-loader?limit=10000',
+              test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+              loader: "url-loader?limit=10000&mimetype=application/font-woff"
             },
             {
                 test: /\.(ttf|eot|svg)(\?[\s\S]+)?$/,
@@ -147,9 +155,12 @@ module.exports = {
             // compress: true
         }),
         extractPlugin,
-        // new TransferWebpackPlugin([
-        //         { from: 'src' },
-        //     ]),
+        new TransferWebpackPlugin([
+                {
+                 from: 'src',
+                   to: 'dist'
+                },
+            ]),
 
         new HtmlWebpackPlugin({
             filename: 'index.html',
@@ -189,6 +200,6 @@ module.exports = {
         new webpack.HotModuleReplacementPlugin(),
     ],
     resolve: {
-        extensions: ['*', '.js', '.jsx'],
+        extensions: ['*', '.js', '.jsx', '.css', '.scss'],
     }
 };
