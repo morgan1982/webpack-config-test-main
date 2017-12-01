@@ -26,6 +26,7 @@ export default class App extends Component {
                 <li>sass</li>
                 <li>develop branch</li>
                 <li>test</li>
+                <li>test 2</li>
                 <li className="fa fa-beer fa-2x">kolos</li>
             </ul>
             <button type="button" className="btn btn-danger">press</button>
