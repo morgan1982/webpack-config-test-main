@@ -26,6 +26,7 @@ export default class App extends Component {
                 <li>develop branch</li>
                 <li>test</li>
                 <li className="fa fa-beer fa-2x">kolos</li>
+                <div className="btn btn-primary">press</div>
             </ul>
             {/*<div id="dump"></div>*/}
 

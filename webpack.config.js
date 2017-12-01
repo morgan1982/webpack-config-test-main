@@ -12,6 +12,7 @@ const extractPlugin = new ExtractTextPlugin({
     allChunks: true,
     disable: process.env.NODE_ENV != 'production'
 })
+const TransferWebpackPlugin = require('transfer-webpack-plugin'); 
 
 module.exports = {
     devtool: 'eval',
@@ -80,7 +81,7 @@ module.exports = {
                 // with use we can specify multiple loaders
                 // the last element is applied first
                 //css-loader will make it understand the imports and then the style loader will allow the imports to the head otherwise we use the extract-text-webpack-plugin to extract the css to a separate file
-                use: ['style-loader', 'css-loader']
+                use: ['style-loader', 'css-loader', 'postcss-loader']
             },
             {
                 test: /\.html$/,
@@ -146,6 +147,9 @@ module.exports = {
             // compress: true
         }),
         extractPlugin,
+        // new TransferWebpackPlugin([
+        //         { from: 'src' },
+        //     ]),
 
         new HtmlWebpackPlugin({
             filename: 'index.html',
